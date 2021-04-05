@@ -1,0 +1,86 @@
+[38;5;4mℹ Using CPU[0m
+[1m
+=========================== Initializing pipeline ===========================[0m
+[38;5;2m✔ Initialized pipeline[0m
+[1m
+============================= Training pipeline =============================[0m
+[38;5;4mℹ Pipeline: ['tok2vec', 'ner'][0m
+[38;5;4mℹ Initial learn rate: 0.001[0m
+E    #       LOSS TOK2VEC  LOSS NER  ENTS_F  ENTS_P  ENTS_R  SCORE 
+---  ------  ------------  --------  ------  ------  ------  ------
+  0       0          0.00     47.89    0.00    0.00    0.00    0.00
+  0     200         61.69   1797.53   67.58   88.70   54.59    0.68
+  0     400         75.43    365.16   19.48   86.47   10.98    0.19
+  0     600        249.34    352.43   25.27   88.22   14.75    0.25
+  1     800        133.86    261.69   24.36   82.57   14.29    0.24
+  1    1000        227.95    215.26   44.47   86.65   29.91    0.44
+  1    1200        205.74    178.11   48.15   93.15   32.47    0.48
+  2    1400        525.83    180.17   48.06   90.50   32.72    0.48
+  3    1600        411.66    167.33   45.63   87.03   30.92    0.46
+  4    1800        253.93    112.08   48.06   89.20   32.89    0.48
+[38;5;2m✔ Saved pipeline to output directory[0m
+training/model-last
+[38;5;4mℹ Using CPU[0m
+[1m
+================================== Results ==================================[0m
+
+TOK     100.00
+NER P   88.70 
+NER R   54.59 
+NER F   67.58 
+SPEED   24657 
+
+[1m
+=============================== NER (per type) ===============================[0m
+
+                     P       R       F
+group_name       88.76   58.61   70.60
+software_name     0.00    0.00    0.00
+technique_name    0.00    0.00    0.00
+tactic            0.00    0.00    0.00
+
+[38;5;2m✔ Saved results to training/metrics.json[0m
+annotate with training/model-best:
+assets/cyber_attrs_training.jsonl->assets/cyber_attrs_training_by_model.jsonl
+annotate with training/model-best:
+assets/cyber_attrs_eval.jsonl->assets/cyber_attrs_eval_by_model.jsonl
+group_name: len(gold_names)=87
+group_name: len(cand_names)=258
+group_name: len(gold_names-cand_names)=11
+group_name: len(cand_names-gold_names)=182
+group_name len(all_names)=269
+gold_df.shape=(8805, 8), cand_df.shape=(8805, 6)
+comp_gold_cand_df.shape=(8805, 2)
+prd_df.shape=(269, 7)
+group_name: len(gold_names)=19
+group_name: len(cand_names)=99
+group_name: len(gold_names-cand_names)=6
+group_name: len(cand_names-gold_names)=86
+group_name len(all_names)=105
+gold_df.shape=(2147, 8), cand_df.shape=(2147, 6)
+comp_gold_cand_df.shape=(2147, 2)
+prd_df.shape=(105, 7)
+[38;5;4mℹ Running workflow 'all'[0m
+[1m
+================================= preprocess =================================[0m
+[38;5;4mℹ Skipping 'preprocess': nothing changed[0m
+[1m
+=================================== train ===================================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python -m spacy train configs/config.cfg --output training/ --paths.train corpus/cyber_attrs_training.spacy --paths.dev corpus/cyber_attrs_eval.spacy
+[1m
+================================== evaluate ==================================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python -m spacy evaluate training/model-best corpus/cyber_attrs_eval.spacy --output training/metrics.json
+[1m
+========================= create-jsnol-anno-by-model =========================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/anno_by_model.py training/model-best assets/cyber_attrs_training.jsonl assets/cyber_attrs_training_by_model.jsonl
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/anno_by_model.py training/model-best assets/cyber_attrs_eval.jsonl assets/cyber_attrs_eval_by_model.jsonl
+[1m
+============================ index-jsnol-into-df ============================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_training.jsonl assets/cyber_attrs_training_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_training_by_model.jsonl assets/cyber_attrs_training_by_model_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval.jsonl assets/cyber_attrs_eval_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval_by_model.jsonl assets/cyber_attrs_eval_by_model_df.zip
+[1m
+============================= evaluate-in-depth =============================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/evaluate_on_each_name.py assets/cyber_attrs_training_df.zip assets/cyber_attrs_training_by_model_df.zip training/train_names_metrics.csv
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/evaluate_on_each_name.py assets/cyber_attrs_eval_df.zip assets/cyber_attrs_eval_by_model_df.zip training/test_names_metrics.csv

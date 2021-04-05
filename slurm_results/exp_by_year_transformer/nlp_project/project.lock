@@ -1,0 +1,124 @@
+preprocess:
+  cmd: python -m spacy run preprocess
+  script:
+    - python scripts/preprocess.py assets/cyber_attrs_training.jsonl corpus/cyber_attrs_training.spacy
+    - python scripts/preprocess.py assets/cyber_attrs_eval.jsonl corpus/cyber_attrs_eval.spacy
+  deps:
+    - path: assets/cyber_attrs_training.jsonl
+      md5: 0760b4ee984148aec56d9a51fd17c2bc
+    - path: assets/cyber_attrs_eval.jsonl
+      md5: 4ef49d3a63795d09e2b2118e5cb573d4
+    - path: scripts/preprocess.py
+      md5: f1a977c39e4530c184903d62ac7df043
+  outs:
+    - path: corpus/cyber_attrs_training.spacy
+      md5: 7e7e31d993d0e2e7cd5dbccf2758b65c
+    - path: corpus/cyber_attrs_eval.spacy
+      md5: ddf563ec2fd00a69f22274758e79f2b1
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a
+train:
+  cmd: python -m spacy run train
+  script:
+    - python -m spacy train configs/config.cfg --output training/ --paths.train corpus/cyber_attrs_training.spacy
+      --paths.dev corpus/cyber_attrs_eval.spacy
+  deps:
+    - path: corpus/cyber_attrs_training.spacy
+      md5: 7e7e31d993d0e2e7cd5dbccf2758b65c
+    - path: corpus/cyber_attrs_eval.spacy
+      md5: ddf563ec2fd00a69f22274758e79f2b1
+  outs:
+    - path: training/model-best
+      md5: a4aa1276e07d67d697102c3dbd0adaf6
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a
+evaluate:
+  cmd: python -m spacy run evaluate
+  script:
+    - python -m spacy evaluate  training/model-best corpus/cyber_attrs_eval.spacy
+      --output training/metrics.json
+  deps:
+    - path: corpus/cyber_attrs_eval.spacy
+      md5: ddf563ec2fd00a69f22274758e79f2b1
+    - path: training/model-best
+      md5: 9818b9c06df40d750402b2c46228f66f
+  outs:
+    - path: training/metrics.json
+      md5: 0f78ba97dee3d0c57b9dbc2ce5375db4
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a
+create-jsnol-anno-by-model:
+  cmd: python -m spacy run create-jsnol-anno-by-model
+  script:
+    - python scripts/anno_by_model.py training/model-best assets/cyber_attrs_training.jsonl
+      assets/cyber_attrs_training_by_model.jsonl
+    - python scripts/anno_by_model.py training/model-best assets/cyber_attrs_eval.jsonl
+      assets/cyber_attrs_eval_by_model.jsonl
+  deps:
+    - path: scripts/anno_by_model.py
+      md5: ac95c5b20a23a809f545b616f5f6ffdf
+    - path: assets/cyber_attrs_training.jsonl
+      md5: 0760b4ee984148aec56d9a51fd17c2bc
+    - path: assets/cyber_attrs_eval.jsonl
+      md5: 4ef49d3a63795d09e2b2118e5cb573d4
+  outs:
+    - path: assets/cyber_attrs_training_by_model.jsonl
+      md5: bbdb8a4fff3302cf3aae6b47e08c6d2c
+    - path: assets/cyber_attrs_training_by_model.jsonl
+      md5: bbdb8a4fff3302cf3aae6b47e08c6d2c
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a
+index-jsnol-into-df:
+  cmd: python -m spacy run index-jsnol-into-df
+  script:
+    - python scripts/index_jsonl_into_df.py assets/cyber_attrs_training.jsonl assets/cyber_attrs_training_df.zip
+    - python scripts/index_jsonl_into_df.py assets/cyber_attrs_training_by_model.jsonl
+      assets/cyber_attrs_training_by_model_df.zip
+    - python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval.jsonl assets/cyber_attrs_eval_df.zip
+    - python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval_by_model.jsonl
+      assets/cyber_attrs_eval_by_model_df.zip
+  deps:
+    - path: scripts/index_jsonl_into_df.py
+      md5: 4682542a2704ca71f6919ff8a613d8a3
+    - path: assets/cyber_attrs_training.jsonl
+      md5: 0760b4ee984148aec56d9a51fd17c2bc
+    - path: assets/cyber_attrs_training_by_model.jsonl
+      md5: bbdb8a4fff3302cf3aae6b47e08c6d2c
+    - path: assets/cyber_attrs_eval.jsonl
+      md5: 4ef49d3a63795d09e2b2118e5cb573d4
+    - path: assets/cyber_attrs_eval_by_model.jsonl
+      md5: 77a465c6e18e8b8a6cb9803e97edf8e6
+  outs:
+    - path: assets/cyber_attrs_training.jsonl
+      md5: 0760b4ee984148aec56d9a51fd17c2bc
+    - path: assets/cyber_attrs_training_by_model.jsonl
+      md5: bbdb8a4fff3302cf3aae6b47e08c6d2c
+    - path: assets/cyber_attrs_eval.jsonl
+      md5: 4ef49d3a63795d09e2b2118e5cb573d4
+    - path: assets/cyber_attrs_eval_by_model.jsonl
+      md5: 77a465c6e18e8b8a6cb9803e97edf8e6
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a
+evaluate-in-depth:
+  cmd: python -m spacy run evaluate-in-depth
+  script:
+    - python scripts/evaluate_on_each_name.py assets/cyber_attrs_training_df.zip assets/cyber_attrs_training_by_model_df.zip
+      training/train_names_metrics.csv
+    - python scripts/evaluate_on_each_name.py assets/cyber_attrs_eval_df.zip assets/cyber_attrs_eval_by_model_df.zip
+      training/test_names_metrics.csv
+  deps:
+    - path: assets/cyber_attrs_training.jsonl
+      md5: 0760b4ee984148aec56d9a51fd17c2bc
+    - path: assets/cyber_attrs_training_by_model.jsonl
+      md5: bbdb8a4fff3302cf3aae6b47e08c6d2c
+    - path: assets/cyber_attrs_eval.jsonl
+      md5: 4ef49d3a63795d09e2b2118e5cb573d4
+    - path: assets/cyber_attrs_eval_by_model.jsonl
+      md5: 77a465c6e18e8b8a6cb9803e97edf8e6
+  outs:
+    - path: training/train_names_metrics.csv
+      md5: 294e63f1a878d9bfde4b3d79e017c429
+    - path: training/test_names_metrics.csv
+      md5: a45aa0979d9a685e79e318900baf01fb
+  spacy_version: 3.0.5
+  spacy_git_version: 53a3b967a

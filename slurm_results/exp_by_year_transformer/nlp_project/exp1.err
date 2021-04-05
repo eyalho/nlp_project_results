@@ -1,0 +1,6 @@
+[2021-03-30 23:15:09,567] [INFO] Set up nlp object from config
+[2021-03-30 23:15:09,577] [INFO] Pipeline: ['transformer', 'ner']
+[2021-03-30 23:15:09,581] [INFO] Created vocabulary
+[2021-03-30 23:15:09,581] [INFO] Finished initializing nlp object
+[2021-03-30 23:19:58,539] [INFO] Initialized pipeline components: ['transformer', 'ner']
+slurmstepd: error: *** JOB 10613 ON s-001 CANCELLED AT 2021-04-02T23:06:46 DUE TO TIME LIMIT ***

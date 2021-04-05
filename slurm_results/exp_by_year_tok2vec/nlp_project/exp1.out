@@ -1,0 +1,185 @@
+converted 0 sentences
+converted 10000 sentences
+converted 20000 sentences
+converted 30000 sentences
+converted 40000 sentences
+converted 50000 sentences
+converted 60000 sentences
+converted 70000 sentences
+converted 80000 sentences
+converted 90000 sentences
+converted 100000 sentences
+converted 110000 sentences
+converted 120000 sentences
+converted 130000 sentences
+converted 140000 sentences
+converted 150000 sentences
+converted 160000 sentences
+converted 170000 sentences
+converted 180000 sentences
+converted 190000 sentences
+converted 200000 sentences
+converted 210000 sentences
+converted 220000 sentences
+converted 230000 sentences
+converted 240000 sentences
+converted 250000 sentences
+converted 260000 sentences
+converted 270000 sentences
+converted 280000 sentences
+converted 290000 sentences
+converted 300000 sentences
+converted 310000 sentences
+converted 320000 sentences
+converted 330000 sentences
+converted 340000 sentences
+Processed 347810 documents: cyber_attrs_training.spacy
+converted 0 sentences
+converted 10000 sentences
+converted 20000 sentences
+converted 30000 sentences
+converted 40000 sentences
+converted 50000 sentences
+converted 60000 sentences
+converted 70000 sentences
+converted 80000 sentences
+converted 90000 sentences
+converted 100000 sentences
+converted 110000 sentences
+converted 120000 sentences
+converted 130000 sentences
+converted 140000 sentences
+converted 150000 sentences
+converted 160000 sentences
+converted 170000 sentences
+converted 180000 sentences
+converted 190000 sentences
+converted 200000 sentences
+converted 210000 sentences
+converted 220000 sentences
+converted 230000 sentences
+converted 240000 sentences
+converted 250000 sentences
+converted 260000 sentences
+converted 270000 sentences
+converted 280000 sentences
+converted 290000 sentences
+converted 300000 sentences
+Processed 309914 documents: cyber_attrs_eval.spacy
+[38;5;4mℹ Using CPU[0m
+[1m
+=========================== Initializing pipeline ===========================[0m
+[38;5;2m✔ Initialized pipeline[0m
+[1m
+============================= Training pipeline =============================[0m
+[38;5;4mℹ Pipeline: ['tok2vec', 'ner'][0m
+[38;5;4mℹ Initial learn rate: 0.001[0m
+E    #       LOSS TOK2VEC  LOSS NER  ENTS_F  ENTS_P  ENTS_R  SCORE 
+---  ------  ------------  --------  ------  ------  ------  ------
+  0       0          0.00     55.00    0.00    0.00    0.00    0.00
+  0     200         46.22    952.43    2.52   68.42    1.28    0.03
+  0     400         99.11    313.36   30.64   56.61   21.00    0.31
+  0     600        538.23    299.87   44.36   49.69   40.06    0.44
+  0     800        815.09    272.99   58.27   63.86   53.58    0.58
+  0    1000        501.42    258.27   59.15   64.94   54.31    0.59
+  0    1200        586.69    277.35   65.86   73.53   59.64    0.66
+  0    1400       3556.96    243.31   68.41   81.92   58.72    0.68
+  0    1600        399.44    259.21   75.37   86.96   66.51    0.75
+  0    1800        912.06    218.11   78.38   86.69   71.52    0.78
+  0    2000       1582.41    333.76   80.67   85.04   76.73    0.81
+  0    2200        693.25    255.08   80.81   85.56   76.56    0.81
+  0    2400       1657.80    276.94   82.45   89.45   76.47    0.82
+  0    2600        842.87    256.58   81.98   88.96   76.01    0.82
+  0    2800       1914.14    220.59   83.87   91.69   77.27    0.84
+  0    3000       3193.08    193.53   83.92   93.15   76.36    0.84
+  0    3200       1033.78    203.96   86.29   92.64   80.76    0.86
+  0    3400       7643.95    174.61   84.39   92.47   77.60    0.84
+  0    3600       9634.10    211.30   83.29   83.12   83.46    0.83
+  0    3800       6180.84    140.85   85.89   94.97   78.40    0.86
+  0    4000       7707.12    142.19   87.10   91.68   82.95    0.87
+  0    4200       9089.53    184.25   87.24   93.64   81.65    0.87
+  0    4400       2541.75    163.92   86.43   91.39   81.98    0.86
+  1    4600      12818.91    154.55   87.86   95.10   81.64    0.88
+  1    4800       1361.44     99.35   86.10   91.90   80.99    0.86
+  1    5000      15036.25    134.91   85.57   91.12   80.66    0.86
+  1    5200       1574.67    127.72   86.02   91.54   81.13    0.86
+  1    5400       8102.74    114.34   85.95   93.94   79.21    0.86
+  1    5600       9422.53    130.85   87.43   91.48   83.72    0.87
+  1    5800       1166.13    102.02   87.96   92.52   83.84    0.88
+  1    6000      18081.88    126.71   87.88   91.83   84.26    0.88
+  1    6200      25926.87    109.51   88.89   94.02   84.29    0.89
+  1    6400       8608.82     90.02   87.90   91.51   84.56    0.88
+  1    6600      18581.70     88.61   88.60   93.60   84.11    0.89
+  1    6800       1495.04     82.38   87.64   90.23   85.20    0.88
+  1    7000      12713.37     91.21   87.77   90.35   85.34    0.88
+  1    7200       9715.70    118.28   88.25   91.78   84.97    0.88
+  1    7400       1633.07     82.51   88.50   93.43   84.06    0.88
+  1    7600       1473.15     84.16   88.01   92.64   83.81    0.88
+  2    7800      45490.13     92.36   86.78   87.36   86.21    0.87
+[38;5;2m✔ Saved pipeline to output directory[0m
+training/model-last
+[38;5;4mℹ Using CPU[0m
+[1m
+================================== Results ==================================[0m
+
+TOK     100.00
+NER P   94.02 
+NER R   84.29 
+NER F   88.89 
+SPEED   23965 
+
+[1m
+=============================== NER (per type) ===============================[0m
+
+                     P       R       F
+technique_name   97.97   69.74   81.48
+tactic           91.06   97.13   93.99
+software_name    92.87   90.88   91.86
+group_name       95.62   79.75   86.96
+
+[38;5;2m✔ Saved results to training/metrics.json[0m
+annotate with training/model-best:
+assets/cyber_attrs_training.jsonl->assets/cyber_attrs_training_by_model.jsonl
+annotate with training/model-best:
+assets/cyber_attrs_eval.jsonl->assets/cyber_attrs_eval_by_model.jsonl
+group_name: len(gold_names)=89
+group_name: len(cand_names)=101
+group_name: len(gold_names-cand_names)=10
+group_name: len(cand_names-gold_names)=22
+group_name len(all_names)=111
+gold_df.shape=(347810, 8), cand_df.shape=(347810, 8)
+comp_gold_cand_df.shape=(6394, 2)
+prd_df.shape=(111, 7)
+group_name: len(gold_names)=103
+group_name: len(cand_names)=139
+group_name: len(gold_names-cand_names)=26
+group_name: len(cand_names-gold_names)=62
+group_name len(all_names)=165
+gold_df.shape=(309914, 8), cand_df.shape=(309914, 8)
+comp_gold_cand_df.shape=(4936, 2)
+prd_df.shape=(165, 7)
+[38;5;4mℹ Running workflow 'all'[0m
+[1m
+================================= preprocess =================================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/preprocess.py assets/cyber_attrs_training.jsonl corpus/cyber_attrs_training.spacy
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/preprocess.py assets/cyber_attrs_eval.jsonl corpus/cyber_attrs_eval.spacy
+[1m
+=================================== train ===================================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python -m spacy train configs/config.cfg --output training/ --paths.train corpus/cyber_attrs_training.spacy --paths.dev corpus/cyber_attrs_eval.spacy
+[1m
+================================== evaluate ==================================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python -m spacy evaluate training/model-best corpus/cyber_attrs_eval.spacy --output training/metrics.json
+[1m
+========================= create-jsnol-anno-by-model =========================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/anno_by_model.py training/model-best assets/cyber_attrs_training.jsonl assets/cyber_attrs_training_by_model.jsonl
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/anno_by_model.py training/model-best assets/cyber_attrs_eval.jsonl assets/cyber_attrs_eval_by_model.jsonl
+[1m
+============================ index-jsnol-into-df ============================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_training.jsonl assets/cyber_attrs_training_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_training_by_model.jsonl assets/cyber_attrs_training_by_model_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval.jsonl assets/cyber_attrs_eval_df.zip
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/index_jsonl_into_df.py assets/cyber_attrs_eval_by_model.jsonl assets/cyber_attrs_eval_by_model_df.zip
+[1m
+============================= evaluate-in-depth =============================[0m
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/evaluate_on_each_name.py assets/cyber_attrs_training_df.zip assets/cyber_attrs_training_by_model_df.zip training/train_names_metrics.csv
+Running command: /home/joberant/nlp_fall_2021/eyalhorowicz/conda_env/bin/python scripts/evaluate_on_each_name.py assets/cyber_attrs_eval_df.zip assets/cyber_attrs_eval_by_model_df.zip training/test_names_metrics.csv
